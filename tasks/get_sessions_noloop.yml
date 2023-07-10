@@ -15,7 +15,7 @@
         sess_num_noloop: "{{ sess_num_noloop|default([]) + item.stdout_lines  }}"
  #       sess_num_noloop: "{{ sess_num_noloop|default([]) }} + {{ item.stdout_lines | json_query(query) }}"
       #loop: "{{ session_number_noloop.results }}"      
-      loop: "{{ session_number_noloop }}"      
+      loop: "{{ session_number_noloop.stdout_lines }}"      
     - name: Print the session numbers
       debug:
           msg:  session number is {{sess_num}}
