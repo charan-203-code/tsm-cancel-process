@@ -16,7 +16,7 @@
         
     - set_fact: 
     #    sess_num_noloop: "{{ sess_num_noloop|default([]) + item  }}"
-        sess_num_noloop: "{{ session_number_noloop }}"
+        sess_num_noloop: "{{ session_number_noloop.stdout_lines }}"
   #      sess_num_noloop: "{{ sess_num_noloop|default([]) }} + {{ item.stdout_lines | json_query(query) }}"
       #loop: "{{ session_number_noloop.results }}"      
    #   loop: "{{ session_number_noloop.stdout_lines }}"      
