@@ -12,13 +12,16 @@
       failed_when: ("No match found using this criteria" in session_number.stdout_lines)
      # loop: "{{ session_type }}"
     - debug:
-        var: session_number | type_debug
-    - set_fact: 
+        var:
+          - session_number | type_debug
+          - session_number.results
+          - session_number.stdout_lines
+ #   - set_fact: 
         #sess_num: "{{ sess_num|default([]) + item.stdout_lines }}"
-        sess_num: "{{ sess_num|default([]) + item }}"
+ #       sess_num: "{{ sess_num|default([]) + item }}"
       #loop: "{{ session_number.results }}"
-      loop: "{{ session_number.stdout_lines }}"
+ #     loop: "{{ session_number.stdout_lines }}"
     #- debug: 
     #    msg: "{{session_number.results | map(attribute='stdout_lines') }}"
-    - debug:
-        var: sess_num
+    #- debug:
+     #   var: sess_num
