@@ -9,10 +9,9 @@
         dataonly: true
         comma: true
       register: session_number
-      - debug:
-          msg:
-           - "{{ session_number.results }}"
-           - "{{ }}"
+           - debug:
+               msg:
+                 - "{{ session_number.results }}"
      # failed_when: ("No match found using this criteria" in session_number.stdout_lines)
      # loop: "{{ session_type }}"
     #- set_fact: 
