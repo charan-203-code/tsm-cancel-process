@@ -15,8 +15,8 @@
         msg: "{{ session_number_noloop | type_debug }}"
         
     - set_fact: 
-  #      sess_num_noloop: "{{ sess_num_noloop|default([]) + item.stdout_lines  }}"
-        sess_num_noloop: "{{ sess_num_noloop|default([]) }} + {{ item.stdout_lines | json_query(query) }}"
+        sess_num_noloop: "{{ sess_num_noloop|default([]) + item.stdout_lines  }}"
+  #      sess_num_noloop: "{{ sess_num_noloop|default([]) }} + {{ item.stdout_lines | json_query(query) }}"
       #loop: "{{ session_number_noloop.results }}"      
       loop: "{{ session_number_noloop | list }}"      
     - name: Print the session numbers
