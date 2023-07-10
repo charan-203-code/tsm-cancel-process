@@ -1,5 +1,5 @@
 ---
-    - name: "To get the Database Backup Process"
+    - name: "To get the Admin sessions"
       dsmadmc:
         command: " select SESSION_ID from sessions where (SESSION_TYPE='{{ item }}') "
         se: "{{ lookup('env', 'tsm_server_node') }}"
