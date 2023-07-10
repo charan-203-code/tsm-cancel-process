@@ -31,7 +31,7 @@
 
 
     - name: Print the process numbers
-        debug:
+      debug:
           msg:  session number is {{sess_num}}
       failed_when: ("No match found using this criteria" in sess_num)   
       loop: "{{ sess_num }}"
