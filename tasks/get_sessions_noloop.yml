@@ -23,5 +23,5 @@
     - name: Print the session numbers
       debug:
           msg:  session number is "{{sess_num_noloop}}"
-      failed_when: ("No match found using this criteria" in sess_num)   
+      failed_when: ("No match found using this criteria" in sess_num_noloop)   
       loop: "{{ sess_num_noloop }}"
