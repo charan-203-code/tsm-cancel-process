@@ -11,6 +11,8 @@
       register: session_number 
       failed_when: ("No match found using this criteria" in session_number.stdout_lines)
      # loop: "{{ session_type }}"
+    - debug:
+        var: session_number | type_debug
     - set_fact: 
         sess_num: "{{ sess_num|default([]) + item.stdout_lines }}"
       #loop: "{{ session_number.results }}"
