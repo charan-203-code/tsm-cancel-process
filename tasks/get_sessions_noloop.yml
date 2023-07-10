@@ -9,7 +9,7 @@
         dataonly: true
         comma: true
       register: session_number_noloop 
-      when: ("No match found using this criteria" in session_number.stdout_lines)
+     # when: ("No match found using this criteria" in session_number.stdout_lines)
       
     - set_fact: 
         sess_num_noloop: "{{ sess_num_noloop|default([]) + item.stdout_lines  }}"
