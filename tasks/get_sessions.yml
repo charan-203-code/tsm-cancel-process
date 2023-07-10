@@ -22,9 +22,16 @@
         msg: "{{session_number.results | map(attribute='stdout_lines') }}"
     #- debug:
      #   var: sess_num
-    - debug:
-        var:
-          - session_number | type_debug
-          - session_number.results
-          - session_number.stdout_lines
+ #   - debug:
+ #       var:
+ #         - session_number | type_debug
+ #         - session_number.results
+ #         - session_number.stdout_lines
    #       - sess_num
+
+
+    - name: Print the process numbers
+        debug:
+          msg:  session number is {{sess_num}}
+      failed_when: ("No match found using this criteria" in sess_num)   
+      loop: "{{ sess_num }}"
