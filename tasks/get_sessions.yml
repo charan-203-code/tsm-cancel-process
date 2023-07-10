@@ -14,7 +14,7 @@
     - set_fact: 
         sess_num: "{{ sess_num|default([]) + item.stdout_lines }}"
       #loop: "{{ session_number.results }}"
-      loop: ""{{ session_number }}""
+      loop: "{{ session_number }}"
     #- debug: 
     #    msg: "{{session_number.results | map(attribute='stdout_lines') }}"
     #- debug:
