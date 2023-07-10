@@ -1,0 +1,9 @@
+---
+    - name: To cancel the Process
+      dsmadmc:
+        command: " cancel process {{ item }} "
+        se: "{{ lookup('env', 'tsm_server_node') }}"
+        id: "{{ lookup('env', 'tsm_app_user') }}"
+        pa: "{{ lookup('env', 'tsm_app_password') }}"
+      failed_when: ("No match found using this criteria" in proc_num)   
+      loop: "{{ proc_num }}"

@@ -1,0 +1,19 @@
+---
+    - name: "To get the Database Backup Process"
+      dsmadmc:
+        command: " select PROCESS_NUM from processes where (PROCESS='{{ item }}') "
+        se: "{{ lookup('env', 'tsm_server_node') }}"
+        id: "{{ lookup('env', 'tsm_app_user') }}"
+        pa: "{{ lookup('env', 'tsm_app_password') }}"
+        dataonly: true
+        comma: true
+      register: process_number
+      failed_when: ("No match found using this criteria" in process_number.stdout_lines)
+      loop: "{{ process_name }}"
+    - set_fact: 
+        proc_num: "{{ proc_num|default([]) + item.stdout_lines }}"
+      loop: "{{ process_number.results }}"
+#    - debug: 
+#        msg: "{{process_number.results | map(attribute='stdout_lines') }}"
+#    - debug:
+#        var: proc_num

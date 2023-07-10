@@ -1,0 +1,8 @@
+---
+    - name: "TO Stop the SP Internal process while Bakcup Window"
+      hosts: "{{ execution_node }}"
+      gather_facts: yes
+      gather_subset: min            
+      tasks:
+        - include: tasks/getprocess.yml
+        - include: tasks/terminateproc.yml
