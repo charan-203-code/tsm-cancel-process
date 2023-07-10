@@ -13,7 +13,7 @@
     - set_fact: 
         proc_num: "{{ proc_num|default([]) + item.stdout_lines }}"
       loop: "{{ process_number.results }}"
-    - debug: 
-        msg: "{{process_number.results | map(attribute='stdout_lines') }}"
-    - debug:
-        var: proc_num
+#    - debug: 
+#        msg: "{{process_number.results | map(attribute='stdout_lines') }}"
+#    - debug:
+#        var: proc_num
