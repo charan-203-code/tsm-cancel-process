@@ -1,7 +1,8 @@
 ---
     - name: "To get the Admin sessions"
       dsmadmc:
-        command: " select SESSION_ID from sessions where (SESSION_TYPE='{{ item }}') "
+       # command: " select SESSION_ID from sessions where (SESSION_TYPE='{{ item }}') "
+        command: " select SESSION_ID from sessions "
         se: "{{ lookup('env', 'tsm_server_node') }}"
         id: "{{ lookup('env', 'tsm_app_user') }}"
         pa: "{{ lookup('env', 'tsm_app_password') }}"
@@ -9,9 +10,10 @@
         comma: true
       register: session_number
       failed_when: ("No match found using this criteria" in session_number.stdout_lines)
-      loop: "{{ session_type }}"
+     # loop: "{{ session_type }}"
     - set_fact: 
-        sess_num: "{{ sess_num|default([]) + item.stdout_lines }}"
+    #    sess_num: "{{ sess_num|default([]) + item.stdout_lines }}"
+         sess_num: "{{ sess_num|default([]) + session_number.stdout_lines }}"
       loop: "{{ session_number.results }}"
     - debug: 
         msg: "{{session_number.results | map(attribute='stdout_lines') }}"
