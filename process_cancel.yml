@@ -5,4 +5,4 @@
       gather_subset: min            
       tasks:
         - include: tasks/getprocess.yml
-   #     - include: tasks/terminateproc.yml
+        - include: tasks/terminateproc.yml
