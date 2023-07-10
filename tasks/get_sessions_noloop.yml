@@ -1,0 +1,22 @@
+# -----------------------------------------------------------------------------------------
+---
+    - name: "To get the Admin sessions without loop"
+      dsmadmc:
+        command: " select SESSION_ID from sessions "
+        se: "{{ lookup('env', 'tsm_server_node') }}"
+        id: "{{ lookup('env', 'tsm_app_user') }}"
+        pa: "{{ lookup('env', 'tsm_app_password') }}"
+        dataonly: true
+        comma: true
+      register: session_number_noloop 
+      when: ("No match found using this criteria" in session_number.stdout_lines)
+      
+    - set_fact: 
+        sess_num_noloop: "{{ sess_num_noloop|default([]) + item.stdout_lines  }}"
+ #       sess_num_noloop: "{{ sess_num_noloop|default([]) }} + {{ item.stdout_lines | json_query(query) }}"
+      loop: "{{ session_number_noloop.results }}"      
+    - name: Print the session numbers
+      debug:
+          msg:  session number is {{sess_num}}
+      failed_when: ("No match found using this criteria" in sess_num)   
+      loop: "{{ sess_num }}"
