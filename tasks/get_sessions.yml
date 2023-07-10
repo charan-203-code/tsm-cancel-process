@@ -21,7 +21,7 @@
     #    msg: "{{session_number.results | map(attribute='stdout_lines') }}"
     #- debug:
      #   var: sess_num
-   - debug:
+    - debug:
         var:
           - session_number | type_debug
           - session_number.results
