@@ -15,13 +15,13 @@
         msg: "{{ session_number_noloop | type_debug }}"
         
     - set_fact: 
-        sess_num_noloop: "{{ sess_num_noloop|default([]) + item  }}"
-    #    sess_num_noloop: "{{ session_number_noloop }}"
+    #    sess_num_noloop: "{{ sess_num_noloop|default([]) + item  }}"
+        sess_num_noloop: "{{ session_number_noloop }}"
   #      sess_num_noloop: "{{ sess_num_noloop|default([]) }} + {{ item.stdout_lines | json_query(query) }}"
       #loop: "{{ session_number_noloop.results }}"      
-      loop: "{{ session_number_noloop.stdout_lines }}"      
+   #   loop: "{{ session_number_noloop.stdout_lines }}"      
     - name: Print the session numbers
       debug:
           msg:  session number is {{sess_num}}
       failed_when: ("No match found using this criteria" in sess_num)   
-      loop: "{{ sess_num }}"
+      loop: "{{ sess_num_noloop }}"
