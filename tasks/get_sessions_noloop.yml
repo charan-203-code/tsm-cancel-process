@@ -12,7 +12,7 @@
      # when: ("No match found using this criteria" in session_number.stdout_lines)
 
     - debug:
-        msg: {{ session_number_noloop | type_debug }}
+        msg: "{{ session_number_noloop | type_debug }}"
         
     - set_fact: 
   #      sess_num_noloop: "{{ sess_num_noloop|default([]) + item.stdout_lines  }}"
